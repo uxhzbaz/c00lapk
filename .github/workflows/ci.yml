@@ -1,25 +1,12 @@
 name: main
 
 on:
-  repository_dispatch:
   workflow_dispatch:
     inputs:
       ssh:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-  watch:
-    types: [ started ]
-  push:
-    branches:
-      - master
-      - main
-    paths-ignore:
-      - '**.md'
-      - '**.txt'
-      - '.github/**'
-      - '.idea/**'
-      - '!.github/workflows/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
