@@ -26,4 +26,6 @@ object Constants {
     const val LOADING_FAILED = "加载失败"
     const val LOADING_EMPTY = "什么也没有"
     const val LOADING_END = "没有更多了"
+    const val URL_LOGIN = "https://account.coolapk.com/auth/login?type=mobile"
+    const val URL_COOLAPK = "https://www.coolapk.com/"
 }
