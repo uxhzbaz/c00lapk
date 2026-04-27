@@ -220,8 +220,8 @@ class SettingsPreferenceFragment : PreferenceFragmentCompat() {
             val slider: Slider = view.findViewById(R.id.slider)
             val fontScale: TextView = view.findViewById(R.id.fontScale)
             slider.apply {
-                valueFrom = 0.80f
-                valueTo = 1.30f
+                valueFrom = 0.60f
+                valueTo = 2.50f
                 value = PrefManager.FONTSCALE.toFloat()
                 setLabelFormatter { value ->
                     String.format("%.2f", value)
