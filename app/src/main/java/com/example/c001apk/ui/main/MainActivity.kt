@@ -96,15 +96,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
     }
 
     private fun refreshAfterLogin() {
+        val currentPos = binding.viewPager.currentItem   // 保存当前页面位置
         genData()
-        initViewPager()
-        if (binding.viewPager.currentItem != 0) {
-            binding.viewPager.setCurrentItem(0, false)
-        }
+        initViewPager()                                   // 刷新 ViewPager
+        binding.viewPager.setCurrentItem(currentPos, false) // 恢复页面位置
     }
 
     private fun initViewPager() {
         binding.viewPager.apply {
+            clearOnPageChangeCallbacks()
             offscreenPageLimit = 2
             adapter = object : FragmentStateAdapter(this@MainActivity) {
                 override fun getItemCount() = 3
@@ -183,6 +183,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
                 navViewBehavior.slideDown(binding.bottomNav as BottomNavigationView, true)
         }
     }
+
     private fun fixBottomNavigationViewInsets(view: BottomNavigationView) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
             val navigationBarsInsets =
