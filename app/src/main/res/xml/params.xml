@@ -3,34 +3,34 @@
 
     <Preference
         android:key="VERSION_NAME"
-        android:title="VERSION_NAME" />
+        android:title="版本" />
     <Preference
         android:key="API_VERSION"
-        android:title="API_VERSION" />
+        android:title="API版本" />
     <Preference
         android:key="VERSION_CODE"
-        android:title="VERSION_CODE" />
+        android:title="版本代码" />
     <Preference
         android:key="MANUFACTURER"
-        android:title="MANUFACTURER" />
+        android:title="制造商" />
     <Preference
         android:key="BRAND"
-        android:title="BRAND" />
+        android:title="品牌" />
     <Preference
         android:key="MODEL"
-        android:title="MODEL" />
+        android:title="型号" />
     <Preference
         android:key="BUILDNUMBER"
-        android:title="BUILDNUMBER" />
+        android:title="构建编号" />
     <Preference
         android:key="SDK_INT"
-        android:title="SDK_INT" />
+        android:title="SDK版本" />
     <Preference
         android:key="ANDROID_VERSION"
-        android:title="ANDROID_VERSION" />
+        android:title="Android版本" />
     <Preference
         android:key="USER_AGENT"
-        android:title="USER_AGENT" />
+        android:title="用户代理" />
     <Preference
         android:enabled="false"
         android:key="xAppDevice"
