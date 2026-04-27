@@ -104,7 +104,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
 
     private fun initViewPager() {
         binding.viewPager.apply {
-            clearOnPageChangeCallbacks()
             offscreenPageLimit = 2
             adapter = object : FragmentStateAdapter(this@MainActivity) {
                 override fun getItemCount() = 3
