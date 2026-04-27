@@ -67,7 +67,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.VERSION_NAME)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("VERSION_NAME")
+                    setTitle("版本")
                     setNegativeButton(android.R.string.cancel, null)
                     setPositiveButton(android.R.string.ok) { _, _ ->
                         PrefManager.VERSION_NAME =
@@ -98,7 +98,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.API_VERSION)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("API_VERSION")
+                    setTitle("API版本")
                     setNegativeButton(android.R.string.cancel, null)
                     setPositiveButton(android.R.string.ok) { _, _ ->
                         PrefManager.API_VERSION =
@@ -128,7 +128,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.VERSION_CODE)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("VERSION_CODE")
+                    setTitle("版本代码")
                     setNegativeButton(android.R.string.cancel, null)
                     setPositiveButton(android.R.string.ok) { _, _ ->
                         PrefManager.VERSION_CODE =
@@ -159,7 +159,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.MANUFACTURER)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("MANUFACTURER")
+                    setTitle("制造商")
                     setNeutralButton(R.string.system_info) { _, _ ->
                         PrefManager.MANUFACTURER = android.os.Build.MANUFACTURER
                         PrefManager.xAppDevice = getDeviceCode(false)
@@ -197,7 +197,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.BRAND)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("BRAND")
+                    setTitle("品牌")
                     setNeutralButton(R.string.system_info) { _, _ ->
                         PrefManager.BRAND = android.os.Build.BRAND
                         PrefManager.xAppDevice = getDeviceCode(false)
@@ -237,7 +237,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.MODEL)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("MODEL")
+                    setTitle("型号")
                     setNeutralButton(R.string.system_info) { _, _ ->
                         PrefManager.MODEL = android.os.Build.MODEL
                         PrefManager.xAppDevice = getDeviceCode(false)
@@ -278,7 +278,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.BUILDNUMBER)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("BUILDNUMBER")
+                    setTitle("构建编号")
                     setNeutralButton(R.string.system_info) { _, _ ->
                         PrefManager.BUILDNUMBER = android.os.Build.DISPLAY
                         PrefManager.xAppDevice = getDeviceCode(false)
@@ -319,7 +319,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.SDK_INT)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("SDK_INT")
+                    setTitle("SDK版本")
                     setNeutralButton(R.string.system_info) { _, _ ->
                         PrefManager.SDK_INT = android.os.Build.VERSION.SDK_INT.toString()
                     }
@@ -353,7 +353,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.ANDROID_VERSION)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("ANDROID_VERSION")
+                    setTitle("Android版本")
                     setNeutralButton(R.string.system_info) { _, _ ->
                         PrefManager.ANDROID_VERSION = android.os.Build.VERSION.RELEASE
                         updateUserAgent()
@@ -391,7 +391,7 @@ class ParamsPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.O
                 editText.setText(PrefManager.USER_AGENT)
                 MaterialAlertDialogBuilder(requireContext()).apply {
                     setView(view)
-                    setTitle("USER_AGENT")
+                    setTitle("用户代理")
                     setNegativeButton(android.R.string.cancel, null)
                     setPositiveButton(android.R.string.ok) { _, _ ->
                         PrefManager.USER_AGENT = editText.text.toString()
