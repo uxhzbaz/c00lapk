@@ -434,8 +434,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.others.WebViewActivity"
-            android:exported="false"
-            android:process=":webview" />
+            android:exported="false" />
         <activity
             android:name=".ui.topic.TopicActivity"
             android:exported="false" />
