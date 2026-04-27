@@ -19,6 +19,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
             setResult(RESULT_OK)
             finish()
+        } else {
+            finish()
         }
     }
 
@@ -31,6 +33,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             putExtra("url", Constants.URL_LOGIN)
             putExtra("isLogin", true)
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!isFinishing) {
+            finish()
+        }
     }
 
     override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
