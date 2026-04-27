@@ -26,6 +26,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             settings.javaScriptEnabled = true
             settings.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             settings.userAgentString = Constants.USER_AGENT
+            if (android.os.Build.VERSION.SDK_INT >= 21) {
+    CookieManager.getInstance().setAcceptThirdPartyCookies(binding.webView, true)
+}
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                     if (url == Constants.URL_COOLAPK) {
