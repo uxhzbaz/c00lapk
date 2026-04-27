@@ -16,6 +16,7 @@ import com.example.c001apk.ui.base.BaseActivity
 import com.example.c001apk.ui.home.HomeFragment
 import com.example.c001apk.ui.message.MessageFragment
 import com.example.c001apk.ui.settings.SettingsFragment
+import com.example.c001apk.util.PrefManager
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -31,6 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
     private val navViewBehavior by lazy { HideBottomViewOnScrollBehavior<BottomNavigationView>() }
     override var controller: IOnBottomClickListener? = null
     private lateinit var navView: NavigationBarView
+    private var previousLoginState = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,32 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
             setBadge()
         }
 
-        binding.viewPager.apply {
-            offscreenPageLimit = 2
-            adapter = object : FragmentStateAdapter(this@MainActivity) {
-                override fun getItemCount() = 3
-                override fun createFragment(position: Int): Fragment {
-                    return when (position) {
-                        0 -> HomeFragment()
-                        1 -> MessageFragment()
-                        else -> SettingsFragment()
-                    }
-                }
-            }
-
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    when (position) {
-                        0 -> onBackPressedCallback.isEnabled = false
-                        1 -> onBackPressedCallback.isEnabled = true
-                        2 -> onBackPressedCallback.isEnabled = true
-                    }
-                }
-            })
-            isUserInputEnabled = false
-            fixViewPager2Insets(this)
-        }
+        initViewPager()
 
         navView.apply {
             if (this is BottomNavigationView) {
@@ -99,7 +76,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
                     R.id.navigation_setting -> {
                         binding.viewPager.setCurrentItem(2, true)
                     }
-
                 }
                 true
             }
@@ -108,7 +84,52 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
                 fixBottomNavigationViewInsets(this)
             }
         }
+        previousLoginState = PrefManager.isLogin
+    }
 
+    override fun onResume() {
+        super.onResume()
+        if (!previousLoginState && PrefManager.isLogin) {
+            refreshAfterLogin()
+        }
+        previousLoginState = PrefManager.isLogin
+    }
+
+    private fun refreshAfterLogin() {
+        genData()
+        initViewPager()
+        if (binding.viewPager.currentItem != 0) {
+            binding.viewPager.setCurrentItem(0, false)
+        }
+    }
+
+    private fun initViewPager() {
+        binding.viewPager.apply {
+            offscreenPageLimit = 2
+            adapter = object : FragmentStateAdapter(this@MainActivity) {
+                override fun getItemCount() = 3
+                override fun createFragment(position: Int): Fragment {
+                    return when (position) {
+                        0 -> HomeFragment()
+                        1 -> MessageFragment()
+                        else -> SettingsFragment()
+                    }
+                }
+            }
+
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    when (position) {
+                        0 -> onBackPressedCallback.isEnabled = false
+                        1 -> onBackPressedCallback.isEnabled = true
+                        2 -> onBackPressedCallback.isEnabled = true
+                    }
+                }
+            })
+            isUserInputEnabled = false
+            fixViewPager2Insets(this)
+        }
     }
 
     private fun initObserve() {
@@ -134,7 +155,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
                 com.google.android.material.R.attr.colorPrimary,
                 0
             )
-        //badge.badgeTextColor = ContextCompat.getColor(this,R.color.design_default_color_error)
         badge.badgeGravity = BadgeDrawable.TOP_END
         badge.verticalOffset = 5
         badge.horizontalOffset = 5
@@ -163,16 +183,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
                 navViewBehavior.slideDown(binding.bottomNav as BottomNavigationView, true)
         }
     }
-
-    // from LibChecker
-    /**
-     * 覆盖掉 BottomNavigationView 内部的 OnApplyWindowInsetsListener 并避免其被软键盘顶起来
-     * @see BottomNavigationView.applyWindowInsets
-     */
     private fun fixBottomNavigationViewInsets(view: BottomNavigationView) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
-            // 这里不直接使用 windowInsets.getInsets(WindowInsetsCompat.Type.navigationBars())
-            // 因为它的结果可能受到 insets 传播链上层某环节的影响，出现了错误的 navigationBarsInsets
             val navigationBarsInsets =
                 ViewCompat.getRootWindowInsets(view)
                     ?.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -187,5 +199,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), IOnBottomClickContaine
             windowInsets
         }
     }
-
 }
