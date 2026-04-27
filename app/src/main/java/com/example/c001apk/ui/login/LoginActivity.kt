@@ -30,32 +30,27 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     CookieManager.getInstance().setAcceptThirdPartyCookies(binding.webView, true)
 }
             webViewClient = object : WebViewClient() {
-                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    if (url == Constants.URL_COOLAPK) {
-                        val cookieManager = CookieManager.getInstance()
-                        fun getCookie(name: String) = cookieManager.getCookie(Constants.URL_COOLAPK)?.let {
-                            Regex("$name=([^;]+)").find(it)?.groupValues?.get(1)
-                        }
-                        val uid = getCookie("uid")
-                        val username = getCookie("username")
-                        val token = getCookie("token")
-                        if (!uid.isNullOrEmpty() && !username.isNullOrEmpty() && !token.isNullOrEmpty()) {
-                            PrefManager.UID = uid
-                            PrefManager.USERNAME = username
-                            PrefManager.TOKEN = token
-                            PrefManager.IS_LOGIN = true
-                            Toast.makeText(this@LoginActivity, "登录成功", Toast.LENGTH_SHORT).show()
-                            setResult(RESULT_OK)
-                            finish()
-                        } else {
-                            Toast.makeText(this@LoginActivity, "登录失败，未获取到凭证", Toast.LENGTH_SHORT).show()
-                            finish()
-                        }
-                        return true
-                    }
-                    return false
+    override fun onPageFinished(view: WebView?, url: String?) {
+        super.onPageFinished(view, url)
+        if (url == Constants.URL_COOLAPK) {
+            val cookie = CookieManager.getInstance().getCookie(Constants.URL_COOLAPK)
+            if (!cookie.isNullOrEmpty()) {
+                val uid = Regex("uid=([^;]+)").find(cookie)?.groupValues?.get(1)
+                val username = Regex("username=([^;]+)").find(cookie)?.groupValues?.get(1)
+                val token = Regex("token=([^;]+)").find(cookie)?.groupValues?.get(1)
+                if (!uid.isNullOrEmpty() && !username.isNullOrEmpty() && !token.isNullOrEmpty()) {
+                    PrefManager.uid = uid
+                    PrefManager.username = username
+                    PrefManager.token = token
+                    PrefManager.isLogin = true
+                    Toast.makeText(this@LoginActivity, "登录成功", Toast.LENGTH_SHORT).show()
+                    setResult(RESULT_OK)
+                    finish()
                 }
             }
+        }
+    }
+}
             loadUrl(Constants.URL_LOGIN)
         }
     }
