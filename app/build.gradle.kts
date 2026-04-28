@@ -165,7 +165,7 @@ dependencies {
     implementation(libs.androidx.webkit)
     implementation(libs.androidx.core.ktx)
     implementation(libs.google.android.flexbox)
-    implementation(libs.google.android.material)
+implementation("com.google.android.material:material:1.11.0")
     implementation(libs.google.dagger.hilt.android)
     ksp(libs.google.dagger.hilt.android.compiler)
     implementation(libs.rikkax.borderview)
