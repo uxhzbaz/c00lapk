@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="外观">
+        <rikka.preference.SimpleMenuPreference
+            android:key="darkTheme"
+            android:title="夜间模式"
+            android:entries="@array/dark_theme_entries"
+            android:entryValues="@array/dark_theme_values" />
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="blackDarkTheme"
+            android:title="纯黑主题"
+            android:defaultValue="false" />
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="followSystemAccent"
+            android:title="跟随系统强调色"
+            android:defaultValue="true" />
+        <rikka.preference.SimpleMenuPreference
+            android:key="themeColor"
+            android:title="主题颜色"
+            android:entries="@array/theme_color_entries"
+            android:entryValues="@array/theme_color_values" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="功能">
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="showEmoji"
+            android:title="显示表情"
+            android:defaultValue="true" />
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="isRecordHistory"
+            android:title="历史记录"
+            android:defaultValue="true" />
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="isIconMiniCard"
+            android:title="小卡片图标"
+            android:defaultValue="true" />
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="isOpenLinkOutside"
+            android:title="外部打开链接"
+            android:defaultValue="false" />
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="isCheckUpdate"
+            android:title="检查更新"
+            android:defaultValue="true" />
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="customToken"
+            android:title="自定义Token"
+            android:defaultValue="false" />
+        <Preference
+            android:key="szlmId"
+            android:title="数字联盟ID" />
+        <Preference
+            android:key="imageQuality"
+            android:title="图片画质" />
+        <Preference
+            android:key="fontScale"
+            android:title="字体缩放" />
+        <Preference
+            android:key="clearCache"
+            android:title="清除缓存" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="黑名单">
+        <Preference
+            android:key="userBlackList"
+            android:title="用户黑名单" />
+        <Preference
+            android:key="topicBlackList"
+            android:title="话题黑名单" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="其他">
+        <Preference
+            android:key="params"
+            android:title="参数" />
+        <Preference
+            android:key="about"
+            android:title="关于" />
+        <rikka.material.preference.MaterialSwitchPreference
+            android:key="isColorFilter"
+            android:title="颜色滤镜"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

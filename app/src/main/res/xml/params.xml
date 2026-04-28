@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="VERSION_NAME"
+        android:title="版本名称" />
+    <Preference
+        android:key="API_VERSION"
+        android:title="API版本" />
+    <Preference
+        android:key="VERSION_CODE"
+        android:title="版本" />
+    <Preference
+        android:key="MANUFACTURER"
+        android:title="制造商" />
+    <Preference
+        android:key="BRAND"
+        android:title="品牌" />
+    <Preference
+        android:key="MODEL"
+        android:title="型号" />
+    <Preference
+        android:key="BUILDNUMBER"
+        android:title="构建编号" />
+    <Preference
+        android:key="SDK_INT"
+        android:title="SDK版本" />
+    <Preference
+        android:key="ANDROID_VERSION"
+        android:title="Android版本" />
+    <Preference
+        android:key="USER_AGENT"
+        android:title="User-Agent" />
+    <Preference
+        android:enabled="false"
+        android:key="xAppDevice"
+        android:title="X-App-Device" />
+    <Preference
+        android:enabled="false"
+        android:key="xAppToken"
+        android:title="X-App-Token" />
+    <Preference
+        android:key="regenerate"
+        android:title="重新生成" />
+</PreferenceScreen>
